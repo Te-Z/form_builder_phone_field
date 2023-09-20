@@ -197,7 +197,7 @@ class FormBuilderPhoneField extends FormBuilderField<String> {
   })  : assert(initialValue == null || controller == null),
         super(
           builder: (FormFieldState<String?> field) {
-            final state = field as _FormBuilderPhoneFieldState;
+            final state = field as FormBuilderPhoneFieldState;
 
             return InputDecorator(
               decoration: state.decoration,
@@ -291,10 +291,10 @@ class FormBuilderPhoneField extends FormBuilderField<String> {
 
   @override
   FormBuilderFieldState<FormBuilderPhoneField, String> createState() =>
-      _FormBuilderPhoneFieldState();
+      FormBuilderPhoneFieldState();
 }
 
-class _FormBuilderPhoneFieldState
+class FormBuilderPhoneFieldState
     extends FormBuilderFieldState<FormBuilderPhoneField, String> {
   late TextEditingController _effectiveController;
   late Country _selectedDialogCountry;
