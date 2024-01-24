@@ -9,7 +9,7 @@ import 'package:phone_number/phone_number.dart';
 
 //TODO: Switch country_pickers for country_code_picker
 /// Field for international phone number input.
-class FormBuilderPhoneField extends FormBuilderField<String> {
+class FormBuilderPhoneField extends FormBuilderFieldDecoration<String> {
   //TODO: Add documentation
   final TextInputType keyboardType;
   final bool obscureText;
@@ -137,7 +137,7 @@ class FormBuilderPhoneField extends FormBuilderField<String> {
     super.valueTransformer,
     super.enabled,
     super.onSaved,
-    AutovalidateMode super.autovalidateMode = AutovalidateMode.disabled,
+    super.autovalidateMode,
     super.onReset,
     super.focusNode,
     this.obscureText = false,
@@ -290,15 +290,21 @@ class FormBuilderPhoneField extends FormBuilderField<String> {
         );
 
   @override
-  FormBuilderFieldState<FormBuilderPhoneField, String> createState() =>
-      FormBuilderPhoneFieldState();
+  FormBuilderFieldDecorationState<FormBuilderPhoneField, String>
+      createState() => _FormBuilderPhoneFieldState();
 }
 
-class FormBuilderPhoneFieldState
-    extends FormBuilderFieldState<FormBuilderPhoneField, String> {
+abstract class FormBuilderPhoneFieldState {
+  String get fullNumber;
+}
+
+class _FormBuilderPhoneFieldState
+    extends FormBuilderFieldDecorationState<FormBuilderPhoneField, String>
+    implements FormBuilderPhoneFieldState {
   late TextEditingController _effectiveController;
   late Country _selectedDialogCountry;
 
+  @override
   String get fullNumber {
     // When there is no phone number text, the field is empty -- the country
     // prefix is only prepended when a phone number is specified.
