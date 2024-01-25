@@ -197,7 +197,7 @@ class FormBuilderPhoneField extends FormBuilderFieldDecoration<String> {
   })  : assert(initialValue == null || controller == null),
         super(
           builder: (FormFieldState<String?> field) {
-            final state = field as FormBuilderPhoneFieldState;
+            final state = field as _FormBuilderPhoneFieldState;
 
             return InputDecorator(
               decoration: state.decoration,
